@@ -1,4 +1,5 @@
 using Mangalogue.Data;
+using Mangalogue.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<MDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Mangalogue"));
 });
+builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<MangaService>();
 
 var app = builder.Build();
 
