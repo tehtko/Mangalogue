@@ -1,18 +1,15 @@
-html {
-  font-size: 14px;
+html, body {
+    background-color: #1d191e;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+#nav, #footer {
+    background-color: #151316
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+.section {
+    margin-top: 2rem;
+    margin-bottom: 10rem; 
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow: hidden;
 }
