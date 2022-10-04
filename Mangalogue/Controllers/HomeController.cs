@@ -1,4 +1,5 @@
 ﻿using Mangalogue.Models;
+using Mangalogue.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,11 +7,14 @@ namespace Mangalogue.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public MangaService _mangaService { get; set; }
+        public UserService _userService { get; set; }
+
+        public HomeController(UserService userService, MangaService mangaService)
         {
-            _logger = logger;
+            _userService = userService;
+            _mangaService = mangaService;
         }
 
         public IActionResult Index()
