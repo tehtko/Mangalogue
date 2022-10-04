@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mangalogue.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mangalogue.Data
 {
@@ -8,5 +9,8 @@ namespace Mangalogue.Data
             : base(options)
         {
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Manga> Mangas { get; set; }
     }
 }
