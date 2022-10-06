@@ -1,0 +1,16 @@
+﻿@using Mangalogue.Entities
+@model Manga
+
+<div class="container">
+    <div class="flex-column">
+        @foreach (var chapter in Model.Chapters)
+        {
+            @foreach (var page in chapter.Pages)
+            {
+                <div>
+                    <h1 class="text-white">test</h1>
+                </div>
+            }
+        }
+    </div>
+</div>
