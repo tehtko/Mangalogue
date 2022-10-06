@@ -4,9 +4,7 @@
     {
         public int Id { get; set; }
         public string? Title { get; set; }
-        public ICollection<int>? Chapters { get; set; }
-        public ICollection<string>? Pages { get; set; }
-        public ICollection<string>? Genres { get; set; }
+        public ICollection<Chapter>? Chapters { get; set; }
 
         public User Author { get; set; }
     }
