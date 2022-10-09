@@ -8,6 +8,6 @@
         public string? Password { get; set; }
 
         public ICollection<Manga>? Posts { get; set; }
-        public ICollection<Manga>? Favourites { get; set; }
+        public ICollection<Favourites>? Favorites { get; set; }
     }
 }

@@ -9,6 +9,5 @@ namespace Mangalogue.Entities
         public ICollection<Chapter>? Chapters { get; set; }
 
         public User Author { get; set; }
-        public List<User>? Favouriters { get; set; }
     }
 }
