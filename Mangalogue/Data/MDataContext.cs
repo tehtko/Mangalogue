@@ -12,5 +12,6 @@ namespace Mangalogue.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Manga> Mangas { get; set; }
+        public DbSet<Favourites> Favourites { get; set; }
     }
 }
