@@ -1,4 +1,6 @@
-﻿namespace Mangalogue.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Mangalogue.Entities
 {
     public class Manga
     {
@@ -7,5 +9,6 @@
         public ICollection<Chapter>? Chapters { get; set; }
 
         public User Author { get; set; }
+        public List<User>? Favouriters { get; set; }
     }
 }
