@@ -1,0 +1,41 @@
+﻿@model UserModel
+
+<style>
+    #card {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div id="card" class="col-5 col-lg-4">
+    <div class="text-center">
+        <h2 class="text-white">Moshi mosh!</h2>
+    </div>
+    <div class="text-center text-danger">
+        <h4 class="text-danger">@ViewData["LoginError"]</h4>
+    </div>
+    <form method="post" asp-action="Login" asp-controller="User" class="form-group d-flex flex-column">
+        <!-- Username -->
+        <div class="text-center">
+            <label class="control-label text-white"><label class="text-danger">*</label>Username or Email</label>
+        </div>
+        <input class="form-control" asp-for="Username" />
+
+        <!-- Password -->
+        <div class="text-center mt-3">
+            <label class="control-label text-white"><label class="text-danger">*</label>Password</label>
+        </div>
+        <input class="form-control" asp-for="Password" />
+
+        <button class="btn-light mt-4 fw-bold text-dark text-center form-control">GO!</button>
+    </form>
+
+    <p class="text-white mt-3">New? Signup <a class="text-white" asp-action="Signup" asp-controller="User">here</a></p>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

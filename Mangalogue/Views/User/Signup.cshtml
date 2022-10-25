@@ -1,0 +1,54 @@
+﻿@model UserModel
+<style>
+    #card {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<div id="card" class="col-5 col-lg-4">
+    <div class="text-center">
+        <h2 class="text-white">Welcome!</h2>
+    </div>
+    <div class="text-center text-danger">
+        <h2 class="text-white">@ViewData["SignupError"]</h2>
+    </div>
+    <form method="post" asp-action="Signup" asp-controller="User" class="form-group d-flex flex-column">
+        <!-- Username -->
+        <div class="text-center">
+            <label class="control-label text-white"><label class="text-danger">*</label>Username</label>
+        </div>
+        <input class="form-control" asp-for="Username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+
+        <!-- Email -->
+        <div class="text-center mt-3">
+            <label class="control-label text-white">Email <label class="text-muted">(Optional)</label></label>
+        </div>
+        <input class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <!-- Password -->
+        <div class="text-center mt-3">
+            <label class="control-label text-white"><label class="text-danger">*</label>Password</label>
+        </div>
+        <input class="form-control" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <!-- Confirm Password -->
+        <div class="text-center mt-3">
+            <label class="control-label text-white"><label class="text-danger">*</label>Confirm Password</label>
+        </div>
+        <input class="form-control" asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        <button class="btn-light mt-4 fw-bold text-dark text-center form-control">GO!</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
