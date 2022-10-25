@@ -1,4 +1,6 @@
-﻿namespace Mangalogue.Entities
+﻿using Microsoft.Build.Framework;
+
+namespace Mangalogue.Entities
 {
     public class User
     {
