@@ -10,12 +10,16 @@ builder.Services.AddDbContext<MDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Mangalogue"));
 }, ServiceLifetime.Scoped);
-builder.Services.AddSingleton<UserService>();
-builder.Services.AddSingleton<MangaService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<MangaService>();
 
 var app = builder.Build();
-app.UseExceptionHandler("/Home/Error");
-app.UseHsts();
+
+if(!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
