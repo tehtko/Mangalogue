@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MDataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Mangalogue"));
-});
+}, ServiceLifetime.Transient);
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<MangaService>();
 
