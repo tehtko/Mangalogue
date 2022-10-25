@@ -1,5 +1,6 @@
 ﻿using Mangalogue.Data;
 using Mangalogue.Entities;
+using Mangalogue.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mangalogue.Services
@@ -15,7 +16,7 @@ namespace Mangalogue.Services
         internal bool AddUser(User user)
         {
             // check to see if the username already exists
-            if (_context.Users.Any(x=>x.Username==user.Username))
+            if (_context.Users.Any(x => x.Username == user.Username))
                 return false;
 
             // check to see if the email already exists
@@ -24,6 +25,7 @@ namespace Mangalogue.Services
 
             try
             {
+                user.Password = Encryption.HashPassword(user.Password);
                 _context.Users.Add(user);
                 _context.SaveChanges();
                 return true;
@@ -36,12 +38,14 @@ namespace Mangalogue.Services
 
         internal bool Login(User user)
         {
+            user.Password = Encryption.UnhashPassword(user.Password, user.salt);
+
             // check to see if an entity with matching username and password exists
-            if (_context.Users.Any(x => x.Username == user.Username))
+            if (_context.Users.Any(x => x.Username == user.Username && x.Password == user.Password))
                 return true;
 
             // check to see if an entity with matching email and password exists
-            else if (_context.Users.Any(x => x.Email == user.Email))
+            else if (_context.Users.Any(x => x.Email == user.Email && x.Password == user.Password))
                 return true;
 
             else
