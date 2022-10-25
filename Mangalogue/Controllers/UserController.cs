@@ -2,6 +2,7 @@
 using Mangalogue.Models;
 using Mangalogue.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Mangalogue.Controllers
 {
@@ -33,6 +34,10 @@ namespace Mangalogue.Controllers
             // check to see if the User exists in the database with matching credentials
             if (_userService.Login(_user))
             {
+                // create a session and return to homepage
+                string userJson = JsonConvert.SerializeObject(_user);
+                HttpContext.Session.SetString("user", userJson);
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -67,9 +72,13 @@ namespace Mangalogue.Controllers
                 Password = user.Password
             };
 
-            // try to add the user and send them back to the homepage
+            // try to add the user and log them in if successful
             if (_userService.AddUser(_user))
             {
+                // create a session and return to homepage
+                string userJson = JsonConvert.SerializeObject(_user);
+                HttpContext.Session.SetString("user", userJson);
+
                 return RedirectToAction("Index", "Home");
             }
 
