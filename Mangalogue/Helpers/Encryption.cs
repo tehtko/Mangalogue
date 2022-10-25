@@ -6,7 +6,7 @@ namespace Mangalogue.Helpers
 {
     public static class Encryption
     {
-        public static string HashPassword(string password)
+        public static string[] HashPassword(string password)
         {
             // Generate a 128-bit salt using a sequence of
             // cryptographically strong random bytes.
@@ -20,12 +20,21 @@ namespace Mangalogue.Helpers
                 iterationCount: 100000,
                 numBytesRequested: 256 / 8));
 
-            return hashed;
+            // return both the salted password, and the salt to store in the database
+            string[] strings = new string[2];
+            strings[0] = hashed;
+            strings[1] = Encoding.GetEncoding(437).GetString(salt);
+
+            return strings;
         }
 
-        public static string UnhashPassword(string password, string s)
+        public static string HashPassword(string password, string s)
         {
-            byte[] salt = Encoding.ASCII.GetBytes(s); // convert the salt into a byte array
+            // break if no salt was provided
+            if (s is null)
+                return string.Empty;
+
+            byte[] salt = Encoding.GetEncoding(437).GetBytes(s); // convert the salt into a byte array
 
             // same implementation as above
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
