@@ -6,6 +6,11 @@ namespace Mangalogue.Helpers
 {
     public static class Encryption
     {
+        /// <summary>
+        /// Hashes the given password
+        /// </summary>
+        /// <param name="password">The password to hash</param>
+        /// <returns>The hashed passsword</returns>
         public static string[] HashPassword(string password)
         {
             // Generate a 128-bit salt using a sequence of
@@ -28,6 +33,11 @@ namespace Mangalogue.Helpers
             return strings;
         }
 
+        /// <summary>
+        /// Hashes the given password with a specific salt
+        /// </summary>
+        /// <param name="password">The password to hash</param>
+        /// <returns>The hashed passsword</returns>
         public static string HashPassword(string password, string s)
         {
             // break if no salt was provided
