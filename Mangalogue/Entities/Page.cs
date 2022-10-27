@@ -1,8 +1,8 @@
 ﻿namespace Mangalogue.Entities
 {
-    public class Chapter
+    public class Page
     {
         public int Id { get; set; }
-        public List<Page>? Pages { get; set; }
+        public string? Image { get; set; }
     }
 }
