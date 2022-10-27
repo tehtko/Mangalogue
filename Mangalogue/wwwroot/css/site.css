@@ -5,7 +5,7 @@
 
 html, body {
     font-family: default;
-    background-color: #1d191e;
+    background-color: #222021;
 }
 
 header {
@@ -52,11 +52,7 @@ header {
     overflow-x: auto;
     white-space: nowrap;
     overflow: hidden;
-    transition: margin-left .5s; /* If you want a transition effect */
-}
-
-#home-search {
-    background-color: #151316;
+    transition: margin-left .4s; /* If you want a transition effect */
 }
 
 nav {
@@ -78,10 +74,14 @@ img {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #151316;
+    background-color: #232123;
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0.2s;
+    box-shadow: 1px 0px 30px 2px black;
     padding-top: 60px;
+    overflow-y: auto;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
     .sidebar2 a {
