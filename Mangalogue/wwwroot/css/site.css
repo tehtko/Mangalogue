@@ -1,9 +1,46 @@
+@font-face {
+    font-family: default;
+    src: url("../Fonts/DMSans-Regular.ttf");
+}
+
 html, body {
+    font-family: default;
     background-color: #1d191e;
 }
 
-#nav, #footer {
-    background-color: #151316
+header {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#navbar {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    position: absolute;
+}
+
+#image {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    width: 100%;
+    position: relative;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 20%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 20%, transparent 100%);
+}
+
+#intro {
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#intro-title {
+    font-size: 2vh;
+}
+
+#intro-body {
+    font-size: 1.5vh;
 }
 
 #card {
@@ -15,4 +52,78 @@ html, body {
     overflow-x: auto;
     white-space: nowrap;
     overflow: hidden;
+    transition: margin-left .5s; /* If you want a transition effect */
+}
+
+#home-search {
+    background-color: #151316;
+}
+
+nav {
+    position: absolute;
+    z-index: 1;
+}
+
+img {
+    z-index: -1;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar2 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #151316;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+    .sidebar2 a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidebar2 a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidebar2 .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    left: 50px;
+}
+
+    .openbtn:hover {
+        opacity: 0.3;
+    }
+
+#home {
+    padding-top: 15px;
+    left: 70px;
+}
+
+input:focus {
+    outline: none;
 }
