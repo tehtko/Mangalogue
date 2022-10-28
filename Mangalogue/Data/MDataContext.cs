@@ -1,5 +1,7 @@
 ﻿using Mangalogue.Entities;
+using Mangalogue.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace Mangalogue.Data
 {
@@ -8,6 +10,18 @@ namespace Mangalogue.Data
         public MDataContext(DbContextOptions<MDataContext> options) 
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Manga>()
+                .Property(x => x.Genres)
+                .HasConversion(
+                v => v.ToString(),
+                v => (ICollection<Genres>)Enum.Parse(typeof(ICollection<Genres>), v));
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<User> Users { get; set; }
