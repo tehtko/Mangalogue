@@ -2,7 +2,7 @@
 
 namespace Mangalogue.Models
 {
-    public class MangaViewModel
+    public class HomepageViewModel
     {
         public ICollection<Manga>? Newest { get; set; }
         public ICollection<Manga>? MostPopular { get; set; }
