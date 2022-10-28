@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Mangalogue.Helpers;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mangalogue.Entities
 {
@@ -6,10 +7,12 @@ namespace Mangalogue.Entities
     {
         public int Id { get; set; }
         public string? Title { get; set; }
-        public string? Cover { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public byte[]? Cover { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public ICollection<Chapter>? Chapters { get; set; }
+        public string? Description { get; set; }
+        public ICollection<Genres>? Genres { get; set; }
 
-        public User Author { get; set; }
+        public User? Author { get; set; }
     }
 }
