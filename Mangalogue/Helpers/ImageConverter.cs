@@ -17,14 +17,14 @@ namespace Mangalogue.Helpers
 
             byte[] data = File.ReadAllBytes(fileNameWithPath);
 
-            System.IO.File.Delete(fileNameWithPath);
+            File.Delete(fileNameWithPath);
 
             return data;
         }
 
         public static void ConvertToImage(string path, byte[] image)
         {
-            System.IO.File.WriteAllBytes(path, image);
+            File.WriteAllBytes(path, image);
         }
     }
 }
