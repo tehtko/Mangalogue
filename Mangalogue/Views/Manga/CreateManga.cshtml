@@ -1,0 +1,11 @@
+﻿@model MangaCreationViewModel
+@{
+    Layout = null;
+}
+<form asp-action="Post" asp-action="CreateManga" enctype="multipart/form-data">
+    <label>Title</label>
+    <input type="text" class="form-control" asp-for="@Model.Title" />
+
+    <label class="col-form-label">Select Multiple Files</label>
+    <button type="submit">GO!</button>
+</form>

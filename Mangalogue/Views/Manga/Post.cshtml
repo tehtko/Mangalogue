@@ -1,8 +1,0 @@
-﻿@model Manga
-<form asp-action="Post">
-    <label>Title</label>
-    <input type="text" class="form-control" asp-for="@Model.Title" />
-
-    <label>Title</label>
-    <input readonly="readonly" type="text" class="form-control" asp-for="@Model.Author" value="@ViewData["User"]"/>
-</form>
