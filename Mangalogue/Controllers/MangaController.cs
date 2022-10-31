@@ -18,7 +18,7 @@ namespace Mangalogue.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Post()
+        public IActionResult CreateManga()
         {
             return View();
         }
@@ -26,7 +26,7 @@ namespace Mangalogue.Controllers
         [HttpPost]
         public IActionResult CreateManga(MangaCreationViewModel manga)
         {
-            IFormFile file = manga.CoverImage;
+            IFormFile file = manga.Thumbnail;
             string _path = Path.Combine(_webHostEnvironment.WebRootPath, "Pages");
             string fileNameWithPath = Path.Combine(_path, file.FileName);
 
@@ -42,7 +42,7 @@ namespace Mangalogue.Controllers
             Manga _manga = new Manga
             {
                 Title = manga.Title,
-                Cover = data,
+                Thumbnail = data,
                 Description = manga.Description,
                 Genres = manga.Genres
             };
@@ -56,6 +56,8 @@ namespace Mangalogue.Controllers
         {
             ChapterUploadViewModel x = new();
             x.Manga = manga;
+
+            _mangaService.CreateManga(manga);
             return View(x);
         }
 
@@ -63,10 +65,11 @@ namespace Mangalogue.Controllers
         public IActionResult AddChapter(ChapterUploadViewModel manga)
         {
             List<Page> pages = new List<Page>();
+
+            // add each image to the pages list
             foreach (var file in manga.Pages)
             {
                 var data = ImageConverter.ConvertToBinary(file, _webHostEnvironment);
-                return View("test", Convert.ToBase64String(data));
 
                 pages.Add(new Page
                 {
@@ -74,17 +77,16 @@ namespace Mangalogue.Controllers
                 });
             }
 
-
+            // then store all those pages into a single chapter
             Chapter chapter = new Chapter
             {
                 ChapterNumber = manga.ChapterNumber,
                 Pages = pages
             };
 
+            // and add that chapter to the manga
             Manga _manga = manga.Manga;
             _manga.Chapters.Add(chapter);
-
-            // _mangaService update chapter
 
             return RedirectToAction("Index", "Home");
         }
