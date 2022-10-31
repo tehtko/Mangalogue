@@ -2,10 +2,25 @@
 @{
     Layout = null;
 }
-<form asp-action="Post" asp-action="CreateManga" enctype="multipart/form-data">
+<form asp-action="CreateManga" enctype="multipart/form-data">
     <label>Title</label>
     <input type="text" class="form-control" asp-for="@Model.Title" />
 
-    <label class="col-form-label">Select Multiple Files</label>
+    <label>Thumbnail</label>
+    <input asp-for="Thumbnail" class="form-control" />
+
+    <label>Description</label>
+    <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+
+    <label>Genres</label>
+    <div class="d-flex flex-column">
+        @foreach(var genre in Enum.GetValues(typeof(Genres)))
+        {
+            <label>@genre</label>
+            <input type="checkbox" name="Genres" value="@genre"/>
+        }
+    </div>
+    
+    
     <button type="submit">GO!</button>
 </form>
