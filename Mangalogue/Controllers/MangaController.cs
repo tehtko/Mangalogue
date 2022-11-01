@@ -84,6 +84,8 @@ namespace Mangalogue.Controllers
                 Pages = pages
             };
 
+            return View("test", chapter);
+
             // and add that chapter to the manga
             Manga _manga = manga.Manga;
             _manga.Chapters.Add(chapter);
