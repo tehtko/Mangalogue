@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mangalogue.styles.css" asp-append-version="true" />
 </head>
-<body >
+<header>
     <div id="content-sidebar" class="sidebar2 text-white">
         <a href="#">Home</a>
         <a href="#">Search</a>
@@ -17,34 +17,22 @@
         <a href="#">Login</a>
         <a href="#">Signup</a>
     </div>
-    <header id="header" class="position-relative">
-        <nav id="navbar" class="navbar navbar-expand-sm">
-            <div class="container-fluid">
-                <button class="openbtn" onclick="toggleNav()">&#9776;</button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul id="links" class="navbar-nav mb-2 mb-lg-0">
-                        <li class="navbar-brand">
-                            <a id="home" class="nav-link active text-white" aria-current="page" href="#">Mangalogue</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div id="front-page">
-            <div id="image">
-                <img src="images/banner2.jpg" />
-            </div>
-            <div id="intro" class="position-absolute">
-                <h4 class="intro-title">Read free Manga <br /> at Mangalogue</h4>
-                <p class="intro-body">
-                    Explore our endless catalogue of manga <br />
-                    for free with no ads, and no signup required!
-                </p>
+    <nav id="navbar" class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+            <button class="openbtn" onclick="toggleNav()">&#9776;</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul id="links" class="navbar-nav mb-2 mb-lg-0">
+                    <li class="navbar-brand">
+                        <a id="home" class="nav-link active text-white" aria-current="page" href="#">Mangalogue</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        
-    </header>
-    <div id="page-body" class="container">
+    </nav>
+</header>
+
+<body>
+    <div id="page-body">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
