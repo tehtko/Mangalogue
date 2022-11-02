@@ -1,7 +1,4 @@
 ﻿@model ChapterUploadViewModel
-@{
-    Layout = null;
-}
 <form method="post" asp-action="AddChapter" enctype="multipart/form-data">
     <label class="col-form-label">Select Multiple Files</label>
     <input asp-for="Pages" class="form-control" multiple />
