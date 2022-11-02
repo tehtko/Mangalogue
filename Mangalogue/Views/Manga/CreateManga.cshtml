@@ -1,26 +1,45 @@
 ﻿@model MangaCreationViewModel
-@{
-    Layout = null;
-}
-<form asp-action="CreateManga" enctype="multipart/form-data">
-    <label>Title</label>
-    <input type="text" class="form-control" asp-for="@Model.Title" />
+
+<style>
+    #genres {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 130px);
+        gap: 10px;
+
+        padding-inline: 40px;
+    }
+
+    h2 {
+        margin-top: 80px;
+    }
+
+    input,textarea {
+        max-width: 700px;
+    }
+</style>
+
+<h2 class="text-center mx-auto text-white fw-bolder">Upload your own Manga!</h2>
+
+<form asp-action="CreateManga" enctype="multipart/form-data" class="text-white text-center">
+    <label id="title">Title</label>
+    <input type="text" class="form-control m-auto w-50" asp-for="@Model.Title" />
 
     <label>Thumbnail</label>
-    <input asp-for="Thumbnail" class="form-control" />
+    <input asp-for="Thumbnail" class="form-control m-auto w-50" />
 
     <label>Description</label>
-    <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+    <textarea type="text" class="form-control m-auto w-50" asp-for="@Model.Description"></textarea>
 
-    <label>Genres</label>
-    <div class="d-flex flex-column">
+    <label class="display-4 fw-bold p-2">Genres</label>
+    <div id="genres" class="text-white">
         @foreach(var genre in Enum.GetValues(typeof(Genres)))
         {
-            <label>@genre</label>
-            <input type="checkbox" name="Genres" value="@genre"/>
+            <div class="d-flex flex-row">
+                <label class="px-1">@genre</label>
+                <input type="checkbox" name="Genres" value="@genre"/>
+            </div>
         }
     </div>
     
-    
-    <button type="submit">GO!</button>
+    <button class="form-control btn-primary w-25 m-auto mt-4" type="submit">GO!</button>
 </form>
