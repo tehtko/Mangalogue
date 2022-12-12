@@ -11,6 +11,8 @@ namespace Mangalogue.Controllers
     {
         public IActionResult Index()
         {
+            TempData["User"] = HttpContext.Session.GetString("user");
+
             return View();
         }
 

@@ -89,5 +89,17 @@ namespace Mangalogue.Controllers
                 return View();
             }
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("user");
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
