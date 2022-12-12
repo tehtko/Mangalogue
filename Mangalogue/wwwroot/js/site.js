@@ -10,6 +10,7 @@ function scrollToRight(divToScroll) {
 function toggleNav() {
     if (state == "closed") {
         document.getElementById("content-sidebar").style.width = "220px";
+            document.getElementById("navbar").style.backgroundColor = "#232123"
         document.getElementById("page-body").style.opacity = "0.5";
         state = "opened"
         return;
@@ -17,7 +18,9 @@ function toggleNav() {
 
     if (state == "opened") {
         document.getElementById("content-sidebar").style.width = "0";
+        document.getElementById("navbar").style.border = "none";
         setTimeout(function () {
+            document.getElementById("navbar").style.backgroundColor = "transparent"
             document.getElementById("page-body").style.opacity = "1";
         }, 200);
         state = "closed"

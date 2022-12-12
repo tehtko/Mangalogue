@@ -10,12 +10,42 @@
 </head>
 <header>
     <div id="content-sidebar" class="sidebar2 text-white">
-        <a href="#">Home</a>
-        <a href="#">Search</a>
-        <a href="#">New</a>
-        <a href="#">Popular</a>
-        <a href="#">Login</a>
-        <a href="#">Signup</a>
+        <div class="sidebar-section">
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="Index" asp-controller="Home">Home</a>
+            </div>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="search">Search</a>
+            </div>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="MangaList" asp-route-id="Trending">Trending</a>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <p class="section-title">Account</p>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="Login" asp-controller="User">Login</a>
+            </div>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="Signup" asp-controller="User">Signup</a>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <p class="section-title">Other</p>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="Login" asp-controller="User">Login</a>
+            </div>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M8 42V18L24 6l16 12v24H28V28h-8v14Z" /></svg>
+                <a asp-action="Signup" asp-controller="User">Signup</a>
+            </div>
+        </div>
     </div>
     <nav id="navbar" class="navbar navbar-expand-sm">
         <div class="container-fluid">
