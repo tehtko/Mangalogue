@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.IO;
+using System.Net;
 
 namespace Mangalogue.Helpers
 {
@@ -20,6 +21,14 @@ namespace Mangalogue.Helpers
         {
             // dump the binary data into a specified file
             File.WriteAllBytes(path, image);
+        }
+
+        public static byte[] DefaultProfileImage()
+        {
+            using (var webClient = new WebClient())
+            {
+                return webClient.DownloadData("https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg");
+            }
         }
     }
 }
