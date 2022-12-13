@@ -1,0 +1,12 @@
+﻿@model List<Changelog>
+<h2>What's new?</h2>
+@foreach(var change in Model)
+{
+    <div class="p-5">
+        <ul class="list-unstyled text-white">
+            <li>@change.PostDate</li>
+            <li>@change.Title</li>
+            <li>@change.Description</li>
+        </ul>
+    </div>
+}

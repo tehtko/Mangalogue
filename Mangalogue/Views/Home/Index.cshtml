@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="d-flex flex-row gap-3">
-            <h3><a href="#">See All</a></h3>
+            <h3><a asp-action="MangaList" asp-route-filter="new">See All</a></h3>
             <button id="slideLeft" onclick="scrollToLeft('new')" type="button">Slide left</button>
             <button id="slideRight" onclick="scrollToRight('new')" type="button">Slide right</button>
         </div>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="d-flex flex-row gap-3">
-            <h3><a href="#">See All</a></h3>
+            <h3><a asp-action="MangaList" asp-route-filter="popular">See All</a></h3>
             <button id="slideLeft" onclick="scrollToLeft('popular')" type="button">Slide left</button>
             <button id="slideRight" onclick="scrollToRight('popular')" type="button">Slide right</button>
         </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="d-flex flex-row gap-3">
-            <h3><a href="#">See All</a></h3>
+            <h3><a asp-action="MangaList" asp-route-filter="random">See All</a></h3>
             <button id="slideLeft" onclick="scrollToLeft('random')" type="button">Slide left</button>
             <button id="slideRight" onclick="scrollToRight('random')" type="button">Slide right</button>
         </div>
