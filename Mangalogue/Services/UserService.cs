@@ -1,6 +1,7 @@
 ﻿using Mangalogue.Data;
 using Mangalogue.Entities;
 using Mangalogue.Helpers;
+using Mangalogue.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
@@ -71,6 +72,15 @@ namespace Mangalogue.Services
             }
 
             return false;
+        }
+
+        public User GetUserById(int id)
+        {
+            // will return null collections for Posts and Favorites if not found. handle this in the controller
+                return _context.Users.Where(u => u.Id == id)
+                .Include(u => u.Posts)
+                .Include(u => u.Favorites)
+                .FirstOrDefault();
         }
     }
 }
