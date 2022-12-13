@@ -2,7 +2,6 @@
 using Mangalogue.Models;
 using Mangalogue.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Diagnostics;
 
 namespace Mangalogue.Controllers
@@ -14,6 +13,27 @@ namespace Mangalogue.Controllers
             TempData["User"] = HttpContext.Session.GetString("user");
 
             return View();
+        }
+
+        public IActionResult MangaList(string filter)
+        {
+            switch (filter)
+            {
+                case "new":
+                    break;
+                case "popular":
+                    break;
+                case "random":
+                    break;
+                default:
+                    break;
+            }
+            return View();
+        }
+
+        public IActionResult Changelog()
+        {
+            return View(Enumerable.Empty<Changelog>());
         }
 
         public IActionResult Privacy()

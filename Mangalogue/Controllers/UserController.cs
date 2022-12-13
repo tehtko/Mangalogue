@@ -91,10 +91,16 @@ namespace Mangalogue.Controllers
         }
 
         public IActionResult Profile()
-        {
-            return View();
-        }
+        { 
+            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
 
+            if (user.Posts is null)
+                user.Posts = Enumerable.Empty<Manga>().ToList();
+            if (user.Favorites is null)
+                user.Favorites = Enumerable.Empty<Favourites>().ToList();
+
+            return View(user);
+        }
 
         public IActionResult Logout()
         {

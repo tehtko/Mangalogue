@@ -7,6 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\User\Login.cshtml.css" />
+    <None Remove="Views\User\Profile.cshtml.css" />
+    <None Remove="Views\User\Signup.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\User\Signup.cshtml.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\User\Login.cshtml.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\User\Profile.cshtml.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
