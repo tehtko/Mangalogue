@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Framework;
+﻿using Mangalogue.Helpers;
+using Microsoft.Build.Framework;
 using Newtonsoft.Json;
 
 namespace Mangalogue.Entities
@@ -10,8 +11,8 @@ namespace Mangalogue.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Salt { get; set; }
-        public DateOnly DateCreated { get; set; }
-        public byte[]? ProfileImage { get; set; }
+        public DateTime DateCreated { get; set; }
+        public byte[]? ProfileImage { get; set; } = ImageConverter.DefaultProfileImage();
         public string? About { get; set; }
 
         public ICollection<Manga>? Posts { get; set; }
