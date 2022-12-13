@@ -1,4 +1,5 @@
 ﻿using Microsoft.Build.Framework;
+using Newtonsoft.Json;
 
 namespace Mangalogue.Entities
 {
@@ -9,6 +10,9 @@ namespace Mangalogue.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Salt { get; set; }
+        public DateOnly DateCreated { get; set; }
+        public byte[]? ProfileImage { get; set; }
+        public string? About { get; set; }
 
         public ICollection<Manga>? Posts { get; set; }
         public ICollection<Favourites>? Favorites { get; set; }
