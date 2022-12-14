@@ -11,7 +11,7 @@ namespace Mangalogue.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Salt { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
         public byte[]? ProfileImage { get; set; } = ImageConverter.DefaultProfileImage();
         public string? About { get; set; }
 

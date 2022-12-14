@@ -11,6 +11,8 @@ namespace Mangalogue.Entities
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public ICollection<Chapter>? Chapters { get; set; }
         public string? Description { get; set; }
+        public int? ViewCount { get; set; }
+        public double? Rating { get; set; }
         public ICollection<Genres>? Genres { get; set; }
 
         public User? Author { get; set; }
