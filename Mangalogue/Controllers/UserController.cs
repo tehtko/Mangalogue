@@ -1,7 +1,9 @@
 ﻿using Mangalogue.Entities;
+using Mangalogue.Helpers;
 using Mangalogue.Models;
 using Mangalogue.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 
 namespace Mangalogue.Controllers
@@ -9,9 +11,12 @@ namespace Mangalogue.Controllers
     public class UserController : Controller
     {
         private readonly UserService _userService;
-        public UserController(UserService userService)
+        private readonly SessionManager _sessionManager;
+
+        public UserController(UserService userService, SessionManager sessionManager)
         {
             _userService = userService;
+            _sessionManager = sessionManager;
         }
 
         public IActionResult Login()
@@ -34,11 +39,9 @@ namespace Mangalogue.Controllers
             // check to see if the User exists in the database with matching credentials
             if (_userService.Login(_user))
             {
-                // create a session and return to homepage
-                string userJson = JsonConvert.SerializeObject(_user);
-                HttpContext.Session.SetString("user", userJson);
-
-                return RedirectToAction("Index", "Home");
+                // create a session and return to profile view
+                _sessionManager.CreateUserSession(_user);
+                return RedirectToAction("Profile");
             }
 
             // tell the user that incorrect information was provided
@@ -75,11 +78,9 @@ namespace Mangalogue.Controllers
             // try to add the user and log them in if successful
             if (_userService.AddUser(_user))
             {
-                // create a session and return to homepage
-                string userJson = JsonConvert.SerializeObject(_user);
-                HttpContext.Session.SetString("user", userJson);
-
-                return RedirectToAction("Index", "Home");
+                // create a session and return to profile view
+                _sessionManager.CreateUserSession(_user);
+                return RedirectToAction("Profile");
             }
 
             // throw a generic error to the user and send them back to the signup page
@@ -92,10 +93,11 @@ namespace Mangalogue.Controllers
 
         public IActionResult Profile()
         { 
-            var user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
+            var user = _sessionManager.GetUserSession();
 
             if (user.Posts is null)
                 user.Posts = Enumerable.Empty<Manga>().ToList();
+
             if (user.Favorites is null)
                 user.Favorites = Enumerable.Empty<Favourites>().ToList();
 

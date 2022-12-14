@@ -4,22 +4,28 @@ using Mangalogue.Services;
 using Mangalogue.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Mangalogue.Controllers
 {
     public class MangaController : Controller
     {
         private readonly MangaService _mangaService;
+        private readonly SessionManager _sessionManager;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public MangaController(MangaService mangaService, IWebHostEnvironment webHostEnvironment)
+        public MangaController(MangaService mangaService, SessionManager sessionManager, IWebHostEnvironment webHostEnvironment)
         {
             _mangaService = mangaService;
             _webHostEnvironment = webHostEnvironment;
+            _sessionManager = sessionManager;
         }
 
         public IActionResult CreateManga()
         {
+            if (_sessionManager.GetUserSession() is null)
+                return RedirectToAction("Login", "User");
+
             return View();
         }
 
@@ -44,21 +50,19 @@ namespace Mangalogue.Controllers
                 Title = manga.Title,
                 Thumbnail = data,
                 Description = manga.Description,
-                Genres = manga.Genres
+                Genres = manga.Genres,
+                Author = _sessionManager.GetUserSession()
             };
 
-            // _mangaService create manga
-            return View("AddChapter", _manga);
+            ChapterUploadViewModel x = new ChapterUploadViewModel
+            {
+                Manga = _manga
+            };
 
-        }
+            _mangaService.CreateManga(_manga);
 
-        public IActionResult AddChapter(Manga manga)
-        {
-            ChapterUploadViewModel x = new();
-            x.Manga = manga;
+            return View("AddChapter", x);
 
-            _mangaService.CreateManga(manga);
-            return View(x);
         }
 
         [HttpPost]
@@ -84,13 +88,14 @@ namespace Mangalogue.Controllers
                 Pages = pages
             };
 
-            return View("test", chapter);
-
             // and add that chapter to the manga
             Manga _manga = manga.Manga;
             _manga.Chapters.Add(chapter);
 
-            return RedirectToAction("Index", "Home");
+            // update the manga
+            _mangaService.UpdateManga(_manga);
+
+            return RedirectToAction("Profile", "User");
         }
     }
 }

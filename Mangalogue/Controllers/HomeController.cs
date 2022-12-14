@@ -1,4 +1,5 @@
 ﻿using Mangalogue.Entities;
+using Mangalogue.Helpers;
 using Mangalogue.Models;
 using Mangalogue.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +10,17 @@ namespace Mangalogue.Controllers
     public class HomeController : Controller
     {
         private readonly MangaService _mangaService;
+        private readonly SessionManager _sessionManager;
 
-        public HomeController(MangaService mangaService)
+        public HomeController(MangaService mangaService, SessionManager sessionManager)
         {
             _mangaService = mangaService;
+            _sessionManager = sessionManager;
         }
 
         public IActionResult Index()
         {
-            TempData["User"] = HttpContext.Session.GetString("user");
+            TempData["User"] = _sessionManager.GetUserSession();
 
             HomepageViewModel homepageViewModel = new HomepageViewModel
             {
