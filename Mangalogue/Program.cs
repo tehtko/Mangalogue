@@ -1,4 +1,5 @@
 using Mangalogue.Data;
+using Mangalogue.Helpers;
 using Mangalogue.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,8 +13,11 @@ builder.Services.AddDbContext<MDataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Mangalogue"));
 }, ServiceLifetime.Scoped);
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<MangaService>();
+builder.Services.AddScoped<SessionManager>();
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(options =>
