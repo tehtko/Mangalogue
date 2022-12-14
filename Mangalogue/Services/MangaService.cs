@@ -28,5 +28,23 @@ namespace Mangalogue.Services
             _context.Mangas.Update(manga);
             _context.SaveChanges();
         }
+
+        public List<Manga> GetNewestManga()
+        {
+            int mangaCount = _context.Mangas.ToList().Count;
+            return _context.Mangas.OrderBy(m=>m.CreatedDate).Take(mangaCount).ToList();
+        }
+
+        public List<Manga> GetPopularManga()
+        {
+            int mangaCount = _context.Mangas.ToList().Count;
+            return _context.Mangas.OrderBy(m => m.ViewCount).Take(mangaCount).ToList();
+        }
+
+        public List<Manga> GetRandomManga()
+        {
+            int mangaCount = _context.Mangas.ToList().Count;
+            return _context.Mangas.OrderBy(arg => Guid.NewGuid()).Take(mangaCount).ToList();
+        }
     }
 }
