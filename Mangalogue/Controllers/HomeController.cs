@@ -8,11 +8,25 @@ namespace Mangalogue.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MangaService _mangaService;
+
+        public HomeController(MangaService mangaService)
+        {
+            _mangaService = mangaService;
+        }
+
         public IActionResult Index()
         {
             TempData["User"] = HttpContext.Session.GetString("user");
 
-            return View();
+            HomepageViewModel homepageViewModel = new HomepageViewModel
+            {
+                Newest = _mangaService.GetNewestManga(),
+                MostPopular = _mangaService.GetPopularManga(),
+                Random = _mangaService.GetRandomManga(),
+            };
+
+            return View(homepageViewModel);
         }
 
         public IActionResult MangaList(string filter)

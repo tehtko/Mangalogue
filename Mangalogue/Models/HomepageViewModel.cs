@@ -6,6 +6,6 @@ namespace Mangalogue.Models
     {
         public ICollection<Manga>? Newest { get; set; }
         public ICollection<Manga>? MostPopular { get; set; }
-        public ICollection<Manga>? Trending { get; set; }
+        public ICollection<Manga>? Random { get; set; }
     }
 }

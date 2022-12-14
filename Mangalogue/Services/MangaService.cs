@@ -31,20 +31,41 @@ namespace Mangalogue.Services
 
         public List<Manga> GetNewestManga()
         {
-            int mangaCount = _context.Mangas.ToList().Count;
-            return _context.Mangas.OrderBy(m=>m.CreatedDate).Take(mangaCount).ToList();
+            try
+            {
+                int mangaCount = _context.Mangas.ToList().Count;
+                return _context.Mangas.OrderBy(m => m.CreatedDate).Take(mangaCount).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return Enumerable.Empty<Manga>().ToList();
+            }
         }
 
         public List<Manga> GetPopularManga()
         {
-            int mangaCount = _context.Mangas.ToList().Count;
-            return _context.Mangas.OrderBy(m => m.ViewCount).Take(mangaCount).ToList();
+            try
+            {
+                int mangaCount = _context.Mangas.ToList().Count;
+                return _context.Mangas.OrderBy(m => m.ViewCount).Take(mangaCount).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return Enumerable.Empty<Manga>().ToList();
+            }
         }
 
         public List<Manga> GetRandomManga()
         {
-            int mangaCount = _context.Mangas.ToList().Count;
-            return _context.Mangas.OrderBy(arg => Guid.NewGuid()).Take(mangaCount).ToList();
+            try
+            {
+                int mangaCount = _context.Mangas.ToList().Count;
+                return _context.Mangas.OrderBy(arg => Guid.NewGuid()).Take(mangaCount).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                return Enumerable.Empty<Manga>().ToList();
+            }
         }
     }
 }
