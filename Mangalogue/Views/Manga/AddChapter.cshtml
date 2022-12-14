@@ -1,4 +1,7 @@
 ﻿@model ChapterUploadViewModel
+
+<h2 class="text-center mx-auto text-white fw-bolder">Add chapters.</h2>
+
 <form method="post" asp-action="AddChapter" enctype="multipart/form-data">
     <label class="col-form-label">Select Multiple Files</label>
     <input asp-for="Pages" class="form-control" multiple />

@@ -1,22 +1,5 @@
 ﻿@model MangaCreationViewModel
 
-<style>
-    #genres {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, 130px);
-        gap: 10px;
-        padding-inline: 40px;
-    }
-
-    h2 {
-        margin-top: 80px;
-    }
-
-    input, textarea {
-        max-width: 700px;
-    }
-</style>
-
 <h2 class="text-center mx-auto text-white fw-bolder">Upload your own Manga!</h2>
 
 <form asp-action="CreateManga" enctype="multipart/form-data" class="text-white text-center">

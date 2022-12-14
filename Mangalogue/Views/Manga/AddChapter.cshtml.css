@@ -1,0 +1,7 @@
+h2 {
+    margin-top: 80px;
+}
+
+input, textarea {
+    max-width: 700px;
+}
