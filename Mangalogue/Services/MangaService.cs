@@ -1,5 +1,6 @@
 ﻿using Mangalogue.Data;
 using Mangalogue.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mangalogue.Services
 {

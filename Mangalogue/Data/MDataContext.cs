@@ -14,12 +14,12 @@ namespace Mangalogue.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var converter = new EnumCollectionJsonValueConverter<Genres>();
+
             modelBuilder
                 .Entity<Manga>()
                 .Property(x => x.Genres)
-                .HasConversion(
-                v => v.ToString(),
-                v => (ICollection<Genres>)Enum.Parse(typeof(ICollection<Genres>), v));
+                .HasConversion(converter);
 
             base.OnModelCreating(modelBuilder);
         }
