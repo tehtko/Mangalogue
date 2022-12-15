@@ -20,15 +20,12 @@
             <div class="d-flex flex-row">
                 @foreach(var newManga in Model.Newest)
                 {
-                    if(newManga.Thumbnail is not null)
-                    {
-                        <div id="manga-card">
+@*                        <div id="manga-card">
                             <img id="thumbnail" src="data:image/gif;base64,@Convert.ToBase64String(newManga.Thumbnail)" />
                             <h5>@newManga.Title</h5>
                             <h5>Chapter @newManga.Chapters.Count</h5>
                             <h5>@newManga.Rating / 5</h5>
-                        </div>
-                    }
+                        </div>*@
                 }
             </div>
         </div>

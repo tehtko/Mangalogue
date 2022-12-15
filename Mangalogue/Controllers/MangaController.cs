@@ -61,6 +61,8 @@ namespace Mangalogue.Controllers
 
             _mangaService.CreateManga(_manga);
 
+            // add hidden input for manga id and get manga in AddChapter method
+
             return View("AddChapter", x);
 
         }
