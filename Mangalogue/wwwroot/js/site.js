@@ -25,10 +25,13 @@ function toggleNav() {
     }
 }
 
-$(document).ready(function () {
-    $('.navbar-light .dmenu').hover(function () {
-        $(this).find('.sm-menu').first().stop(true, true).slideDown(150);
-    }, function () {
-        $(this).find('.sm-menu').first().stop(true, true).slideUp(105)
-    });
-});
+function showPreview(event) {
+    for (var i = 0; i < event.target.files.length; i++) {
+        var image = URL.createObjectURL(event.target.files[i]);
+        var imageContainer = document.getElementById('preview');
+        var imagePreview = document.createElement('img');
+        imagePreview.src = image;
+        imagePreview.width = 200;
+        imageContainer.appendChild(imagePreview);
+    }
+}

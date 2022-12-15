@@ -1,9 +1,14 @@
 ﻿@model ChapterUploadViewModel
 
-<h2 class="text-center mx-auto text-white fw-bolder">Add chapters.</h2>
+<h2 class="text-center mx-auto text-white fw-bolder">Add chapters!</h2>
 
 <form method="post" asp-action="AddChapter" enctype="multipart/form-data">
-    <label class="col-form-label">Select Multiple Files</label>
-    <input asp-for="Pages" class="form-control" multiple />
-    <button type="submit">GO!</button>
+    <div class="text-white">
+        <label class="btn btn-danger" for="files">Upload pages </label>
+        <input id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)"/>        
+    </div>
+    <div id="preview">
+
+    </div>
+    <button class="btn btn-primary" id="submitChapter" type="submit">GO!</button>
 </form>
