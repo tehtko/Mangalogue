@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mangalogue.Migrations
 {
     [DbContext(typeof(MDataContext))]
-    [Migration("20221213034409_AddProfileImage")]
-    partial class AddProfileImage
+    [Migration("20221218212056_Edit Column Name")]
+    partial class EditColumnName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,11 +88,17 @@ namespace Mangalogue.Migrations
                     b.Property<string>("Genres")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("Rating")
+                        .HasColumnType("float");
+
                     b.Property<byte[]>("Thumbnail")
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ViewCount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
