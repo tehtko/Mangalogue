@@ -20,8 +20,6 @@ namespace Mangalogue.Controllers
 
         public IActionResult Index()
         {
-            TempData["User"] = _sessionManager.GetUserSession();
-
             HomepageViewModel homepageViewModel = new HomepageViewModel
             {
                 Newest = _mangaService.GetNewestManga(),
