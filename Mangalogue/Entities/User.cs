@@ -13,7 +13,7 @@ namespace Mangalogue.Entities
         public string? Salt { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public byte[]? ProfileImage { get; set; } = ImageConverter.DefaultProfileImage();
-        public string? About { get; set; }
+        public string? About { get; set; } = string.Empty;
 
         public ICollection<Manga>? Posts { get; set; }
         public ICollection<Favourites>? Favorites { get; set; }
