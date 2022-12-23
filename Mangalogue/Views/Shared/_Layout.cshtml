@@ -26,7 +26,8 @@
         </div>
         <div class="sidebar-section">
             <p class="section-title">Account</p>
-            @if(TempData["User"] is null)
+            @inject SessionManager _sessionManager
+            @if (_sessionManager.GetUserSession() is null)
             {
                 <div class="sidebar-link">
                     <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M24.45 42v-3H39V9H24.45V6H39q1.2 0 2.1.9.9.9.9 2.1v30q0 1.2-.9 2.1-.9.9-2.1.9Zm-3.9-9.25L18.4 30.6l5.1-5.1H6v-3h17.4l-5.1-5.1 2.15-2.15 8.8 8.8Z" /></svg>
@@ -44,6 +45,10 @@
                     <a asp-action="Profile" asp-controller="User">Profile</a>
                 </div>
                 <div class="sidebar-link">
+                    <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M22.5 40h-9.95q-4.4 0-7.475-3.075Q2 33.85 2 29.45q0-3.9 2.5-6.85 2.5-2.95 6.35-3.55 1-4.85 4.7-7.925T24.1 8.05q5.6 0 9.45 4.075Q37.4 16.2 37.4 21.9v1.2q3.6-.1 6.1 2.325Q46 27.85 46 31.55q0 3.45-2.5 5.95T37.55 40H25.5V24.1l4.15 4.15 2.15-2.15-7.8-7.8-7.8 7.8 2.15 2.15 4.15-4.15Z" /></svg>
+                    <a asp-action="CreateManga" asp-controller="Manga">Upload</a>
+                </div>
+                <div class="sidebar-link">
                     <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h14.55v3H9v30h14.55v3Zm24.3-9.25-2.15-2.15 5.1-5.1h-17.5v-3h17.4l-5.1-5.1 2.15-2.15 8.8 8.8Z" /></svg>
                     <a asp-action="Logout" asp-controller="User">Logout</a>
                 </div>
@@ -51,6 +56,10 @@
         </div>
         <div class="sidebar-section">
             <p class="section-title">Other</p>
+            <div class="sidebar-link">
+                <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M7 42q-1.25 0-2.125-.875T4 39V6l3.35 3.35L10.65 6 14 9.35 17.35 6l3.3 3.35L24 6l3.35 3.35L30.65 6 34 9.35 37.35 6l3.3 3.35L44 6v33q0 1.25-.875 2.125T41 42Zm0-3h15.5V25H7v14Zm18.5 0H41v-5.5H25.5Zm0-8.5H41V25H25.5ZM7 22h34v-6H7Z" /></svg>
+                <a asp-action="Changelog" asp-controller="Home">Changelog</a>
+            </div>
             <div class="sidebar-link">
                 <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path fill="#FFFFFF" d="M7 44q-1.2 0-2.1-.9Q4 42.2 4 41V17q0-1.2.9-2.1.9-.9 2.1-.9h11.85V7q0-1.2.9-2.1.9-.9 2.1-.9h4.35q1.2 0 2.1.9.9.9.9 2.1v7H41q1.2 0 2.1.9.9.9.9 2.1v24q0 1.2-.9 2.1-.9.9-2.1.9Zm4.6-8.35h11.95v-.7q0-.9-.45-1.6-.45-.7-1.15-.95-1.6-.55-2.5-.725-.9-.175-1.75-.175-.95 0-2.025.225t-2.425.675q-.75.25-1.2.95-.45.7-.45 1.6Zm16.8-3.35h8.5v-2.5h-8.5Zm-10.7-2.5q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q18.85 24.4 17.7 24.4t-1.925.775Q15 25.95 15 27.1t.775 1.925q.775.775 1.925.775Zm10.7-3.15h8.5v-2.5h-8.5ZM21.85 17h4.35V7h-4.35Z" /></svg>
                 <a asp-action="Privacy" asp-controller="Home">Privacy</a>
