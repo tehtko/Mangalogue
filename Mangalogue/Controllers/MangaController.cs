@@ -70,6 +70,11 @@ namespace Mangalogue.Controllers
         [HttpPost]
         public IActionResult AddChapter(ChapterUploadViewModel manga)
         {
+            // make sure the user trying to add a chapter to the manga is the author
+            if (_sessionManager.GetUserSession().Id != manga.Manga.Author.Id)
+                return RedirectToAction("Index", "Home");
+
+            // create an empty list of pages, that the chapter will contain
             List<Page> pages = new List<Page>();
 
             // add each image to the pages list
@@ -83,10 +88,12 @@ namespace Mangalogue.Controllers
                 });
             }
 
-            // then store all those pages into a single chapter
+            // get the current chapter number and increment by 1
+
+            // then store all those pages into said chapter
             Chapter chapter = new Chapter
             {
-                ChapterNumber = manga.ChapterNumber,
+                ChapterNumber = manga.Manga.Chapters.Count + 1,
                 Pages = pages
             };
 
