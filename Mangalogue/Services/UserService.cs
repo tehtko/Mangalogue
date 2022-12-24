@@ -59,8 +59,8 @@ namespace Mangalogue.Services
                     return false;
             }
 
-            // check to see if an entity with matching email and password exists
-            else if (_context.Users.Any(x => x.Email == user.Email && x.Password == user.Password))
+            // check to see if an entity with the given email exists
+            else if (_context.Users.Any(x => x.Email == user.Email))
             {
                 // if there is a match, check to see if the password in the database
                 // matches the user provided password
@@ -78,6 +78,14 @@ namespace Mangalogue.Services
         {
             // will return null collections for Posts and Favorites if not found. handle this in the controller
                 return _context.Users.Where(u => u.Id == id)
+                .Include(u => u.Posts)
+                .Include(u => u.Favorites)
+                .FirstOrDefault();
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.Where(u => u.Email == email)
                 .Include(u => u.Posts)
                 .Include(u => u.Favorites)
                 .FirstOrDefault();
