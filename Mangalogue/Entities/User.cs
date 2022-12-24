@@ -11,11 +11,11 @@ namespace Mangalogue.Entities
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Salt { get; set; }
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; }
         public byte[]? ProfileImage { get; set; } = ImageConverter.DefaultProfileImage();
         public string? About { get; set; } = string.Empty;
 
-        public ICollection<Manga>? Posts { get; set; }
-        public ICollection<Favourites>? Favorites { get; set; }
+        public ICollection<Manga>? Posts { get; set; } = Enumerable.Empty<Manga>().ToList();
+        public ICollection<Favourites>? Favorites { get; set; } = Enumerable.Empty<Favourites>().ToList();
     }
 }
