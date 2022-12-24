@@ -1,30 +1,45 @@
 ﻿@model User
-<div class="container2">
+<div id="page-body" class="container-fluid">
     <div class="row">
-        <div id="profile-content" class="col-3">
+        <div id="profile-content" class="col-sm-12 col-xl-2">
             <div class="row">
-                <div id="profile-content-list" class="col">
+                <div id="profile-content-list" class="text-center mt-3">
                     <div id="profile-picture">
                         <img id="profile-picture" src="data:image/gif;base64,@Convert.ToBase64String(Model.ProfileImage)" />
                     </div>
+                <h5 class="text-center text-white">@Model.Username</h5>
                 </div>
             </div>
         </div>
-        <div id="mangas" class="col-5 col-xl-7 text-white">
-            <div id="username" class="">
-                <h5>@Model.Username</h5>
+        <div id="mangas" class="col-sm-12 col-xl-8 text-white">
+            <p>@Model.Username's favourites</p>
+            <div id="mangas-list" class="container-fluid">
+                <div class="row">
+                    <p>test1</p>
+                    <p>test2</p>
+                    <p>test3</p>
+                    <p>test4</p>
+                    <p>test5</p>
+                </div>
             </div>
-            <div id="mangas-list">
-                <p>hehe hoho test</p>
-                <p>hehe hoho test</p>
-                <p>hehe hoho test</p>
-                <p>hehe hoho test</p>
-                <p>hehe hoho test</p>
-                <p>hehe hoho test</p>
+                <p>@Model.Username's uploads</p>
+            <div id="mangas-list" class="container-fluid">
+                <div class="row">
+                    <p>test1</p>
+                    <p>test2</p>
+                    <p>test3</p>
+                    <p>test4</p>
+                    <p>test5</p>
+                </div>
             </div>
         </div>
-        <div id="options" class="col-xl-2">
+        <div id="options" class="col-sm-12 col-xl-2 text-white mx-auto">
             <a asp-action="CreateManga" asp-controller="Manga" class="btn btn-light">Upload Manga</a>
+            <ul>@Model.Username's socials
+                <li>Twitter</li>
+                <li>Deviant</li>
+                <li>Youtube</li>
+            </ul>
         </div>
     </div>
 </div>

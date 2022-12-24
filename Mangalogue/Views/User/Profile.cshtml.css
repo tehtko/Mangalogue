@@ -1,11 +1,17 @@
-.container2 {
-    margin: 100px 100px 0px 100px;
+#page-body {
+    margin-top: 100px;
+}
+
+#profile-content {
+    background-color: #191819;
 }
 
 #profile-picture {
     width: 80px;
     height: 80px;
     border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #username {
@@ -22,4 +28,8 @@ profile-content-list {
 }
 
 #mangas {
+}
+
+#options {
+    background-color: #191819;
 }
