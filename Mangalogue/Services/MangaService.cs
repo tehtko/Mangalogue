@@ -12,6 +12,16 @@ namespace Mangalogue.Services
             _context = context;
         }
 
+        public Manga GetMangaById(int id)
+        {
+            return _context.Mangas.FirstOrDefault(m => m.Id == id);
+        }
+
+        public Manga GetMangaByTitle(string title)
+        {
+            return _context.Mangas.FirstOrDefault(m => m.Title == title);
+        }
+
         public void CreateManga(Manga manga)
         {
             if (manga is null)
