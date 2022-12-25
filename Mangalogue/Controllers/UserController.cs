@@ -95,18 +95,26 @@ namespace Mangalogue.Controllers
         { 
             var user = _sessionManager.GetUserSession();
 
-            if (user.Posts is null)
-                user.Posts = Enumerable.Empty<Manga>().ToList();
+            if(user is null)
+                return RedirectToAction("Index", "Home");
 
-            if (user.Favorites is null)
-                user.Favorites = Enumerable.Empty<Favourites>().ToList();
+            return View(user);
+        }
+
+        [HttpGet("/Profile/{id}")]
+        public IActionResult Profile(int id)
+        {
+            var user = _userService.GetUserById(id);
+
+            if (user is null)
+                return RedirectToAction("Index", "Home");
 
             return View(user);
         }
 
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("user");
+            HttpContext.Session.Remove("User");
             return RedirectToAction("Index", "Home");
         }
     }
