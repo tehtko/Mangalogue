@@ -4,11 +4,14 @@ using Mangalogue.Helpers;
 using Mangalogue.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Mangalogue.Services
 {
     public class UserService
     {
+#pragma warning disable 8602, 8603, 8604
         private readonly MDataContext _context;
         public UserService(MDataContext context)
         {
@@ -77,18 +80,37 @@ namespace Mangalogue.Services
         public User GetUserById(int id)
         {
             // will return null collections for Posts and Favorites if not found. handle this in the controller
+            try
+            {
                 return _context.Users.Where(u => u.Id == id)
                 .Include(u => u.Posts)
                 .Include(u => u.Favorites)
                 .FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                return new User();
+            }
         }
 
-        public User GetUserByEmail(string email)
+        public User GetUserByLogin(string login)
         {
-            return _context.Users.Where(u => u.Email == email)
-                .Include(u => u.Posts)
-                .Include(u => u.Favorites)
-                .FirstOrDefault();
+            // check to see if an entity with matching username and password exists
+            if (_context.Users.Any(x => x.Username == login))
+            {
+                // if there is a match, return that user
+                return _context.Users.FirstOrDefault(x => x.Username == login);
+            }
+
+            // check to see if an entity with the given email exists
+            else if (_context.Users.Any(x => x.Email == login))
+            {
+                // if there is a match, return that user
+                return _context.Users.FirstOrDefault(x => x.Email == login);
+            }
+
+            return null;
         }
     }
+#pragma warning restore 8602, 8603, 8604
 }
