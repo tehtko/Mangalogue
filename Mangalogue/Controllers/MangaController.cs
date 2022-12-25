@@ -51,27 +51,26 @@ namespace Mangalogue.Controllers
                 Thumbnail = data,
                 Description = manga.Description,
                 Genres = manga.Genres,
-                Author = _sessionManager.GetUserSession()
-            };
-
-            ChapterUploadViewModel x = new ChapterUploadViewModel
-            {
-                Manga = _manga
+                AuthorId = _sessionManager.GetUserSession().Id
             };
 
             _mangaService.CreateManga(_manga);
 
+            ChapterUploadViewModel x = new ChapterUploadViewModel
+            {
+                MangaId = _mangaService.GetMangaByTitle(_manga.Title).Id
+            };
+
             // add hidden input for manga id and get manga in AddChapter method
-
             return View("AddChapter", x);
-
         }
 
         [HttpPost]
         public IActionResult AddChapter(ChapterUploadViewModel manga)
         {
+            var _manga = _mangaService.GetMangaById(manga.MangaId);
             // make sure the user trying to add a chapter to the manga is the author
-            if (_sessionManager.GetUserSession().Id != manga.Manga.Author.Id)
+            if (_sessionManager.GetUserSession().Id != _manga.AuthorId)
                 return RedirectToAction("Index", "Home");
 
             // create an empty list of pages, that the chapter will contain
@@ -88,17 +87,16 @@ namespace Mangalogue.Controllers
                 });
             }
 
-            // get the current chapter number and increment by 1
 
+            // get the current chapter number and increment by 1
             // then store all those pages into said chapter
             Chapter chapter = new Chapter
             {
-                ChapterNumber = manga.Manga.Chapters.Count + 1,
+                ChapterNumber = _manga.Chapters.Count + 1,
                 Pages = pages
             };
 
             // and add that chapter to the manga
-            Manga _manga = manga.Manga;
             _manga.Chapters.Add(chapter);
 
             // update the manga

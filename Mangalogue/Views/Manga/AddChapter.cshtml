@@ -3,9 +3,10 @@
 <h2 class="text-center mx-auto text-white fw-bolder">Add chapters!</h2>
 
 <form method="post" asp-action="AddChapter" enctype="multipart/form-data">
+    <input type="hidden" value="@Model.MangaId" asp-for="@Model.MangaId" />
     <div class="text-white">
         <label class="btn btn-danger" for="files">Upload pages </label>
-        <input id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)"/>        
+        <input asp-for="Pages" id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)"/>        
     </div>
     <div id="preview">
 
