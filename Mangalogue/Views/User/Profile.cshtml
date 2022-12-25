@@ -7,35 +7,34 @@
                     <div id="profile-picture">
                         <img id="profile-picture" src="data:image/gif;base64,@Convert.ToBase64String(Model.ProfileImage)" />
                     </div>
-                <h5 class="text-center text-white">@Model.Username</h5>
+                    <h5 class="text-center text-white">@Model.Username</h5>
+                    <h6 class="text-center text-white">About @Model.Username</h6>
+                    <p id="about" class="text-white">@Model.About</p>
                 </div>
             </div>
         </div>
         <div id="mangas" class="col-sm-12 col-xl-8 text-white">
-            <p>@Model.Username's favourites</p>
+            <p>@Model.Username's uploads</p>
             <div id="mangas-list" class="container-fluid">
                 <div class="row">
-                    <p>test1</p>
-                    <p>test2</p>
-                    <p>test3</p>
-                    <p>test4</p>
-                    <p>test5</p>
+                    @foreach (var favourite in Model.Favorites)
+                    {
+                        <div>Test</div>
+                    }
                 </div>
             </div>
-                <p>@Model.Username's uploads</p>
+            <p>@Model.Username's favourites</p>
             <div id="mangas-list" class="container-fluid">
-                <div class="row">
-                    <p>test1</p>
-                    <p>test2</p>
-                    <p>test3</p>
-                    <p>test4</p>
-                    <p>test5</p>
-                </div>
+                @foreach (var favourite in Model.Favorites)
+                {
+                    <div>Test</div>
+                }
             </div>
         </div>
         <div id="options" class="col-sm-12 col-xl-2 text-white mx-auto">
             <a asp-action="CreateManga" asp-controller="Manga" class="btn btn-light">Upload Manga</a>
-            <ul>@Model.Username's socials
+            <ul>
+                @Model.Username's socials
                 <li>Twitter</li>
                 <li>Deviant</li>
                 <li>Youtube</li>
