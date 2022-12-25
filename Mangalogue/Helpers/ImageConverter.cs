@@ -25,10 +25,7 @@ namespace Mangalogue.Helpers
 
         public static byte[] DefaultProfileImage()
         {
-            using (var webClient = new WebClient())
-            {
-                return webClient.DownloadData("https://raw.githubusercontent.com/tehtko/Mangalogue/master/Mangalogue/wwwroot/images/default.jpg");
-            }
+            return File.ReadAllBytes("Helpers\\default.jpg");
         }
     }
 }
