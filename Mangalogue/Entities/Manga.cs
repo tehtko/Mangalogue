@@ -18,6 +18,10 @@ namespace Mangalogue.Entities
         public double? Rating { get; set; } = 0.0;
         public ICollection<Genres>? Genres { get; set; } = Enumerable.Empty<Genres>().ToList();
 
+        //FK to Author
+        public int AuthorId { get; set; }
+
+        //Navigation property for User
         public User? Author { get; set; }
     }
 }
