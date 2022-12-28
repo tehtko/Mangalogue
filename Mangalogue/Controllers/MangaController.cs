@@ -5,6 +5,7 @@ using Mangalogue.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using Newtonsoft.Json;
+using Westwind.Web;
 
 namespace Mangalogue.Controllers
 {
@@ -66,22 +67,22 @@ namespace Mangalogue.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddChapter(ChapterUploadViewModel manga)
+        public IActionResult AddChapter(int mangaId, List<IFormFile> pages)
         {
-            var _manga = _mangaService.GetMangaById(manga.MangaId);
+            var _manga = _mangaService.GetMangaById(mangaId);
             // make sure the user trying to add a chapter to the manga is the author
             if (_sessionManager.GetUserSession().Id != _manga.AuthorId)
                 return RedirectToAction("Index", "Home");
 
             // create an empty list of pages, that the chapter will contain
-            List<Page> pages = new List<Page>();
+            List<Page> _pages = new List<Page>();
 
             // add each image to the pages list
-            foreach (var file in manga.Pages)
+            foreach (var file in pages)
             {
                 var data = ImageConverter.ConvertToBinary(file, _webHostEnvironment);
 
-                pages.Add(new Page
+                _pages.Add(new Page
                 {
                     Image = data
                 });
@@ -93,7 +94,7 @@ namespace Mangalogue.Controllers
             Chapter chapter = new Chapter
             {
                 ChapterNumber = _manga.Chapters.Count + 1,
-                Pages = pages
+                Pages = _pages
             };
 
             // and add that chapter to the manga
