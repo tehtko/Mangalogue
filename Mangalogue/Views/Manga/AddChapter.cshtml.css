@@ -2,10 +2,6 @@ h2 {
     margin-top: 50px;
 }
 
-#submitChapter {
-
-}
-
-img {
-    aspect-ratio: 2/3;
+#sortable {
+    margin: 30px 0 30px 0;
 }

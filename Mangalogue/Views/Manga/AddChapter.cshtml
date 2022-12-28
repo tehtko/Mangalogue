@@ -1,18 +1,46 @@
-﻿@model ChapterUploadViewModel
+﻿@*@model ChapterUploadViewModel*@
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <h2 class="text-center mx-auto text-white fw-bolder">Add chapters!</h2>
 
 <form method="post" asp-action="AddChapter" enctype="multipart/form-data">
-    <input type="hidden" value="@Model.MangaId" asp-for="@Model.MangaId" />
+    <input type="hidden"@* value="@Model.MangaId" asp-for="@Model.MangaId"*@ />
     <div class="text-white">
         <label class="btn btn-danger" for="files">Upload pages </label>
-        <input asp-for="Pages" id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)"/>        
+        <input id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)" />
     </div>
-    <div id="preview">
-
-    </div>
-    <button class="btn btn-primary" id="submitChapter" type="submit">GO!</button>
+    <ul id="sortable">
+    </ul>
+    <button class="btn btn-primary" id="submitChapter" onclick="submitPages()">GO!</button>
 </form>
 
 <script>
+    // makes the submitted photos sortable
+    $(function () {
+        $("#sortable").sortable();
+    });
+
+    // shows the image after it has been uploaded
+    function showPreview(event) 
+    {
+        for (var i = 0; i < event.target.files.length; i++) {
+            var image = URL.createObjectURL(event.target.files[i]);
+            var imagePreview = document.createElement('img');
+            imagePreview.src = image;
+            imagePreview.classList.add("sortablePreviewImage");
+            imagePreview.style.marginInline = "10px";
+            imagePreview.style.width = "200px";
+            imagePreview.style.border = "5px solid aliceblue";
+            imagePreview.style.aspectRatio = 2 / 3;
+            document.getElementById('sortable').appendChild(imagePreview);
+        }
+    }
+
+    function submitPages()
+    {
+        var images = $(".sortablePreviewImage");
+    }
 </script>

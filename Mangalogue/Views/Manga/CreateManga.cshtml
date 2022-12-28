@@ -5,20 +5,20 @@
 <form asp-action="CreateManga" enctype="multipart/form-data" class="text-white text-center">
     <div class="form-group">
         <label id="title">Title</label>
-        <input type="text" class="form-control m-auto w-50" asp-for="@Model.Title" />
+        <input type="text" class="form-control m-auto w-50" autocomplete="off" asp-for="@Model.Title" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
 
 
     <div class="form-group">
         <label>Thumbnail</label>
-        <input asp-for="Thumbnail" class="form-control m-auto w-50" />
+        <input asp-for="Thumbnail" class="form-control m-auto w-50" autocomplete="off" />
         <span asp-validation-for="Thumbnail" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Description</label>
-        <textarea type="text" class="form-control m-auto w-50" asp-for="@Model.Description"></textarea>
+        <textarea type="text" class="form-control m-auto w-50" asp-for="@Model.Description" autocomplete="off"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
