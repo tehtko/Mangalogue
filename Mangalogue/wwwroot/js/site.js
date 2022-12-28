@@ -24,14 +24,3 @@ function toggleNav() {
         return;
     }
 }
-
-function showPreview(event) {
-    for (var i = 0; i < event.target.files.length; i++) {
-        var image = URL.createObjectURL(event.target.files[i]);
-        var imageContainer = document.getElementById('preview');
-        var imagePreview = document.createElement('img');
-        imagePreview.src = image;
-        imagePreview.width = 200;
-        imageContainer.appendChild(imagePreview);
-    }
-}
