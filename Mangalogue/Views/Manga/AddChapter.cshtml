@@ -62,8 +62,11 @@
             cache: false,
             contentType: false,
             processData: false,
-            success: (result) => {
-                alert("Upload was successful");
+            success: () => {
+                $.get('/Manga/Profile')
+            },
+            error: () => {
+                $.get('/Manga/Error')
             }
         });
     }
