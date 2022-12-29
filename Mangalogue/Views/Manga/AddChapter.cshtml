@@ -48,6 +48,7 @@
         var formData = new FormData();
         formData.append("mangaId", @Model.MangaId);
 
+        // gets all the images from our files array and append them to the form data
         for(let i = 0; i < files.length; i++)
         {
             formData.append("pages", files[i]);
@@ -63,10 +64,10 @@
             contentType: false,
             processData: false,
             success: () => {
-                $.get('/Manga/Profile')
+                $.get('/Manga/Profile') // Go back to the User's profile
             },
             error: () => {
-                $.get('/Manga/Error')
+                $.get('/Manga/Error') // Show an Error page and ask the User to try again
             }
         });
     }
