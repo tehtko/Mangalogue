@@ -105,5 +105,10 @@ namespace Mangalogue.Controllers
 
             return RedirectToAction("Profile", "User");
         }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }
