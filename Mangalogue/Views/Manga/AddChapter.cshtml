@@ -65,6 +65,30 @@
         parent.removeChild(event.target); // remove it from our sortable container (parent in this instance)
     }
 
+    // swaps the position of two pages
+    function swap(page1, page2) {
+        /*
+        // loop through the files and find where both pages live
+        for(let i = 0; i < files.length; i++) {
+            if(files[i] == page1) {
+                var page1_index = i;
+            }
+            if(files[i] == page2) {
+                var page2_index = i;
+            }
+        }
+
+        // make the swap
+        var buffer = files[page1_index];
+        files[page1_index] = files[page2_index];
+        files[page2_index] = files[buffer];
+        */
+
+       // step 1. figure out the new index of the page in the array
+       // step 2. increment each page's index +1 if it is to the RIGHT of the moved page's new position
+
+    }
+
     // posts the data
     function save() {
 
