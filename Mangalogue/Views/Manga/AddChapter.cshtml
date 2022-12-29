@@ -29,47 +29,60 @@
     // shows the image after it has been uploaded
     function showPreview(event) {
         files.push(event.target.files[0])
-        for (var i = 0; i < event.target.files.length; i++) {
-            var image = URL.createObjectURL(event.target.files[i]);
-            var imagePreview = document.createElement('img');
-            imagePreview.src = image;
-            imagePreview.addEventListener("dblclick", removePhoto);
-            imagePreview.classList.add("sortablePreviewImage");
-            imagePreview.style.marginInline = "10px";
-            imagePreview.style.cursor = "move";
-            imagePreview.style.width = "200px";
-            imagePreview.style.border = "5px solid aliceblue";
-            imagePreview.style.aspectRatio = 2 / 3;
-            document.getElementById('sortable').appendChild(imagePreview);
+        for (var i = 0; i < event.target.files.length; i++) { // if multiple images were uploaded, loop through them all
+
+            var image = URL.createObjectURL(event.target.files[i]); // get the image from the input element
+
+            var imagePreview = document.createElement('img');  // create an image element that will render our image in the DOM
+
+            imagePreview.src = image; // set the elements source to the image that was just uploaded
+
+            imagePreview.addEventListener("dblclick", removePhoto); // simple event to remove page from the array and DOM
+
+            imagePreview.classList.add("sortablePreviewImage"); // for querying purposes
+
+            imagePreview.style.marginInline = "10px"; // 20px gap between images (10px per side)
+
+            imagePreview.style.cursor = "move"; // cross arrow cursor on hover
+
+            imagePreview.style.width = "200px"; // 200px wide so you can fit many in a single row
+
+            imagePreview.style.border = "5px solid black"; // border for aesthetics
+
+            imagePreview.style.aspectRatio = 2 / 3; // force a 2/3 aspect ratio which is standard for Mangas
+
+            document.getElementById('sortable').appendChild(imagePreview); // add this to our jquery sortable container
+
         }
     }
 
     // deletes the photo from the array and the DOM
     function removePhoto(event) {
-        files.pop(event.target);
+
+        files.pop(event.target); // remove from the array
+
         let parent = document.getElementById("sortable");
-        parent.removeChild(event.target);
+        parent.removeChild(event.target); // remove it from our sortable container (parent in this instance)
     }
 
     // posts the data
     function save() {
+
         var formData = new FormData();
-        formData.append("mangaId", @Model.MangaId);
+        formData.append("mangaId", @Model.MangaId); // sets the mangaId to whatever was passed in by the controller
 
         // gets all the images from our files array and append them to the form data
         for (let i = 0; i < files.length; i++) {
             formData.append("pages", files[i]);
         }
 
-        console.log(formData);
-
         $.ajax({
             url: '/Manga/AddChapter',
             type: 'POST',
             data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
+            cache: false,           // must be false to post files with ajax
+            contentType: false,     // must be false to post files with ajax
+            processData: false,     // must be false to post files with ajax
             success: () => {
                 $.get('/Manga/Profile') // Go back to the User's profile
             },
