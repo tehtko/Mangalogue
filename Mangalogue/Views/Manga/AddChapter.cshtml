@@ -10,7 +10,7 @@
     <input type="hidden" value="@Model.MangaId" asp-for="MangaId" />
     <div class="text-white">
         <label class="btn btn-danger w-25 d-block mx-auto justify-content-center text-center" for="files">Upload pages </label>
-        <input id="files" type="file" style="visibility:hidden" onchange="showPreview(event)" />
+        <input id="files" type="file" style="visibility:hidden" multiple onchange="showPreview(event)" />
     </div>
     <ul id="sortable">
     </ul>
@@ -23,7 +23,12 @@
 
     // makes the submitted photos sortable
     $(function () {
-        $("#sortable").sortable();
+        $("#sortable").sortable({
+            items: ".sortablePreviewImage",
+            update: function (event, ui) {
+                console.log($(".sortablePreviewImage"))
+            }
+        });
     });
 
     // shows the image after it has been uploaded
@@ -52,41 +57,13 @@
             imagePreview.style.aspectRatio = 2 / 3; // force a 2/3 aspect ratio which is standard for Mangas
 
             document.getElementById('sortable').appendChild(imagePreview); // add this to our jquery sortable container
-
         }
     }
 
     // deletes the photo from the array and the DOM
     function removePhoto(event) {
-
-        files.pop(event.target); // remove from the array
-
         let parent = document.getElementById("sortable");
         parent.removeChild(event.target); // remove it from our sortable container (parent in this instance)
-    }
-
-    // swaps the position of two pages
-    function swap(page1, page2) {
-        /*
-        // loop through the files and find where both pages live
-        for(let i = 0; i < files.length; i++) {
-            if(files[i] == page1) {
-                var page1_index = i;
-            }
-            if(files[i] == page2) {
-                var page2_index = i;
-            }
-        }
-
-        // make the swap
-        var buffer = files[page1_index];
-        files[page1_index] = files[page2_index];
-        files[page2_index] = files[buffer];
-        */
-
-       // step 1. figure out the new index of the page in the array
-       // step 2. increment each page's index +1 if it is to the RIGHT of the moved page's new position
-
     }
 
     // posts the data
@@ -96,9 +73,16 @@
         formData.append("mangaId", @Model.MangaId); // sets the mangaId to whatever was passed in by the controller
 
         // gets all the images from our files array and append them to the form data
-        for (let i = 0; i < files.length; i++) {
-            formData.append("pages", files[i]);
+        var images = $(".sortablePreviewImage");
+        for(let i = 0; i < images.length; i++)
+        {
+            let file = images[i].src;
+            file = new File([file], images[i].src, { type: file.type });
+            formData.append("pages", file, images[i].src_ + i);
+
+            console.log(file);
         }
+
 
         $.ajax({
             url: '/Manga/AddChapter',
@@ -108,7 +92,7 @@
             contentType: false,     // must be false to post files with ajax
             processData: false,     // must be false to post files with ajax
             success: () => {
-                $.get('/Manga/Profile') // Go back to the User's profile
+                //$.get('/Manga/Profile') // Go back to the User's profile
             },
             error: () => {
                 $.get('/Manga/Error') // Show an Error page and ask the User to try again
