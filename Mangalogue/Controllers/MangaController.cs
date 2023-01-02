@@ -55,7 +55,7 @@ namespace Mangalogue.Controllers
                 AuthorId = _sessionManager.GetUserSession().Id
             };
 
-            _mangaService.CreateManga(_manga);
+            _mangaService.CreateManga(_manga); // don't do this. create this once at least one chapter has been created
 
             ChapterUploadViewModel x = new ChapterUploadViewModel
             {
