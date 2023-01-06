@@ -55,8 +55,6 @@ namespace Mangalogue.Controllers
                 AuthorId = _sessionManager.GetUserSession().Id
             };
 
-            _mangaService.CreateManga(_manga); // don't do this. create this once at least one chapter has been created
-
             ChapterUploadViewModel x = new ChapterUploadViewModel
             {
                 MangaId = _mangaService.GetMangaByTitle(_manga.Title).Id
@@ -70,6 +68,7 @@ namespace Mangalogue.Controllers
         public IActionResult AddChapter(int mangaId, List<IFormFile> pages)
         {
             var _manga = _mangaService.GetMangaById(mangaId);
+
             // make sure the user trying to add a chapter to the manga is the author
             if (_sessionManager.GetUserSession().Id != _manga.AuthorId)
                 return RedirectToAction("Index", "Home");
@@ -88,7 +87,6 @@ namespace Mangalogue.Controllers
                 });
             }
 
-
             // get the current chapter number and increment by 1
             // then store all those pages into said chapter
             Chapter chapter = new Chapter
@@ -101,7 +99,7 @@ namespace Mangalogue.Controllers
             _manga.Chapters.Add(chapter);
 
             // update the manga
-            _mangaService.UpdateManga(_manga);
+            _mangaService.UpdateManga(_manga); // if it doesn't exist, it will create it
 
             return RedirectToAction("Profile", "User");
         }
